@@ -6,52 +6,55 @@ import java.util.ArrayList;
 public class Swamp {
 	
 	private ArrayList <Row> theRows = new ArrayList <Row> ();
-	private final int SWAMP_SIZE = 4;
+	private final int NUMBER_OF_ROWS = 4;
 	
 	
 	//Setting up the Grid using Rows
 	public Swamp() {
-		Row tempRow;
-		for(int loop = 1; loop <= this.SWAMP_SIZE; loop++) {
-			tempRow = new Row(loop);
-			this.theRows.add(tempRow);
+		for(int loop = 1; loop <= this.NUMBER_OF_ROWS; loop++) {
+			this.theRows.add(new Row(loop));
 		}
 		
 		
 	}//end Grid
 	
-	//is there a ship on a particular square
-	public boolean isThereAShipOn(int row, int square) {
+	//is there a enemy on a particular square
+	public boolean isTheOgreOn(int row, int square) {
 		for(Row tempRow : this.theRows) {
 			if(tempRow.getNumber() == row) {
 				//found the correct row
 				for(Square tempSquare : tempRow.getTheSquares()) {
 					if(tempSquare.getNumber() == square) {
 						//found the correct square
-						return tempSquare.isThereAShip();
+						if(tempSquare.getTheOgre() == null) {
+							//the Ogre is not here
+							return false;
+						}
 					}
 				}
 			}
 			
 		}
-		return false;
-	}//end of isThereASHipOn
+		return true;
+	}//end class
 	
 	
-	//method to add ship
-	public void addShip(Ship ship, int row, int square) {
+	//method for number of enemies on a square
+	public int howManyOgreEnemiesOn(int row, int square) {
 		for(Row tempRow : this.theRows) {
 			if(tempRow.getNumber() == row) {
 				//found correct row
 				for(Square tempSquare : tempRow.getTheSquares()) {
 					if(tempSquare.getNumber() == square) {
 						//found correct square
-						tempSquare.setShip(ship);
+						return tempSquare.getTheEnemies().size();
 					}
 				}
 			}
 		}
-	}//end of addShip
+		return 0;
+	}
+//end of how many ogre enemies
 	
 	//method to remove an already hit ship
 	public void removeShip(Ship ship, int row, int square) {

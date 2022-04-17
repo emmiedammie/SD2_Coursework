@@ -13,7 +13,7 @@ public class Square {
 		setNumber(number);
 	}
 	
-	public boolean isThereAShip() {
+	public boolean isThereAnEnemy() {
 		if(theShip == null) {
 			return false;
 		}
@@ -21,6 +21,14 @@ public class Square {
 	}
 	
 	
+	public ArrayList<OgreEnemy> getTheEnemies() {
+		return theEnemies;
+	}
+
+	public void setTheEnemies(ArrayList<OgreEnemy> theEnemies) {
+		this.theEnemies = theEnemies;
+	}
+
 	//getters and setters
 	public void setShip(Ship theShip) {
 		this.theShip = theShip;

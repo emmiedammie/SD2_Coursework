@@ -10,10 +10,8 @@ public class Row {
 	
 	
 	public Row(int number) {
-		Square tempSquare;
 		for(int loop = 1; loop <= this.ROW_SIZE; loop++) {
-			tempSquare = new Square(loop);
-			this.theSquares.add(tempSquare);
+			this.theSquares.add(new Square(loop));
 		}
 		setNumber(number);
 	}
